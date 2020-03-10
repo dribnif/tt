@@ -2,7 +2,7 @@
 tt -- A command-line based time tracker
 =======================================
 
-``tt`` is a small stateful command line time-tracking application implemented in python.
+``tt`` is a small stateful command line time-tracking application implemented in Python.
 Simple basic usage looks like this::
 
     $ tt start my-project 14:15
@@ -79,12 +79,15 @@ Adding a new time box
 ---------------------
 
   $ tt start fav-customer 12:15
+  
   Started working on fav-customer at 12:15.
 
   $ tt status
+  
   You have been working on fav-customer for about 2 hours, since 12:15; It is now 14:12.
 
   $ tt stop 12:30
+  
   So you stopped working on fav-customer.
 
 ``start`` and ``stop`` can take a time of the form ``HH:mm`` or ``HHmm`` at which to apply the action. They store the times normalized to GMT in the database, taking into account the DST values for your timezone. Beware when reading or editing!
@@ -103,7 +106,7 @@ Tag your activity for added reportability::
 Change entries:
 ---------------
 
-By setting a default text editor (console or gui-based)  in the environment variable ``EDITOR``, you can easily correct mistakes. Just add the following line, referecing  your favourite text editor to your ``~/.bashrc`` and enable fast time entry correction.
+By setting a default text editor (console or gui-based)  in the environment variable ``EDITOR``, you can easily correct mistakes. Just add the following line, referencing  your favourite text editor to your ``~/.bashrc`` and enable fast time entry correction.
 
   $ export EDITOR=vim
 
@@ -125,7 +128,9 @@ csv
 Get a list of all activities in CSV format, so that they can be imported into your favourite spreadsheet editor
 
   $ tt csv
+  
   $ tt csv | grep 2018-01 ### will show all entries you logged in January 2018
+  
   $ tt --no-color csv | grep 2018-01 > /tmp/jan-2018.csv ; libreoffice /tmp/jan-2018.csv
 
 The last command allows you to break out of the console and takes you into the realm of spreadsheets. The ``--no-color`` parameter makes sure that the terminal's color markup does not end up in your csv file.
@@ -136,7 +141,9 @@ report
 Get a report for your project, grouped by day:
 
   $ tt report customeur
+  
   $ tt report customeur | grep 2018-10
+  
   $ tt --no-color report customeur | grep 2018-10 >  /tmp/oct-2018.csv ; libreoffice /tmp/oct-2018.csv
 
 Same trick applies here. Beware that the CSV separator is in this case the pipe symbol ``|``, since semicolons are used for concatenating all the different note entries into one big note field per day.
