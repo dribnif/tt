@@ -1,0 +1,3 @@
+import locale
+
+locale.getdefaultlocale()
