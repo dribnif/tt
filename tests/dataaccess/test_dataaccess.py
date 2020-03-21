@@ -1,5 +1,5 @@
 from unittest import TestCase
-from ti.dataaccess.utils import *
+from tt.dataaccess.utils import *
 
 
 class TestDataaccess(TestCase):

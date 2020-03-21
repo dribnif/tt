@@ -1,6 +1,6 @@
-from ti.dataaccess.utils import get_data_store
-from ti.actions.utils.utils import ensure_working
-from ti.dateutils.dateutils import formatted_str_for_isotime_str
+from tt.dataaccess.utils import get_data_store
+from tt.actions.utils.utils import ensure_working
+from tt.dateutils.dateutils import formatted_str_for_isotime_str
 
 
 def action_stop(colorizer, time):

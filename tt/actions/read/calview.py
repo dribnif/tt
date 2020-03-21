@@ -6,9 +6,9 @@ import calendar
 
 from collections import defaultdict
 
-from ti.dateutils.dateutils import *
-from ti.dataaccess.utils import get_data_store
-from ti.actions.utils import reportingutils
+from tt.dateutils.dateutils import *
+from tt.dataaccess.utils import get_data_store
+from tt.actions.utils import reportingutils
 def action_calview(colorizer, month, year):
     report = generate_day_based_report()
     year =  get_current_year_local_tz() if year is None else year

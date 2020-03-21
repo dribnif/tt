@@ -3,26 +3,24 @@ from __future__ import print_function
 
 import sys
 
-from ti.colors.colors import Colorizer
+from tt.colors.colors import Colorizer
 
-from ti.dateutils.dateutils import to_datetime
+from tt.dateutils.dateutils import to_datetime
 
-from ti.exceptz.exceptz import BadArguments
-from ti.exceptz.exceptz import TIError
+from tt.exceptz.exceptz import BadArguments
+from tt.exceptz.exceptz import TIError
 
-from ti.actions.write import edit
-from ti.actions.write import start
-from ti.actions.write import stop
-from ti.actions.write import tag
-from ti.actions.write import note
+from tt.actions.write import edit
+from tt.actions.write import start
+from tt.actions.write import stop
+from tt.actions.write import tag
+from tt.actions.write import note
 
-from ti.actions.read import log
-from ti.actions.read import csv
-from ti.actions.read import report
-from ti.actions.read import calview
-from ti.actions.read import status
-
-
+from tt.actions.read import log
+from tt.actions.read import csv
+from tt.actions.read import report
+from tt.actions.read import calview
+from tt.actions.read import status
 
 
 def parse_args(argv=sys.argv):
@@ -48,7 +46,8 @@ def parse_args(argv=sys.argv):
 
     elif head in ['start']:
         if not tail or len(tail) != 2:
-            raise BadArguments("Please provide a name for the activity and the start time, like so:\n$ ti start project 14:15")
+            raise BadArguments(
+                'Please provide a name for the activity and the start time, like so:\n$ tt start project 14:15')
 
         fn = start.action_start
         args = {
@@ -82,8 +81,9 @@ def parse_args(argv=sys.argv):
     elif head in ['calview']:
         fn = calview.action_calview
         if not tail:
-            raise BadArguments('Please provide the month [optionally followed by the year] for which to generate the activity report')
-        args = {'colorizer': colorizer, 'month': tail[0], 'year': tail[1] if len(tail) > 1 else None }
+            raise BadArguments(
+                'Please provide the month [optionally followed by the year] for which to generate the activity report')
+        args = {'colorizer': colorizer, 'month': tail[0], 'year': tail[1] if len(tail) > 1 else None}
 
     elif head in ['tag']:
         if not tail:

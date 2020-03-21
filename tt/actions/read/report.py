@@ -2,9 +2,9 @@ from __future__ import print_function
 
 from collections import defaultdict
 
-from ti.dateutils.dateutils import *
-from ti.dataaccess.utils import get_data_store
-from ti.actions.utils import reportingutils
+from tt.dateutils.dateutils import *
+from tt.dataaccess.utils import get_data_store
+from tt.actions.utils import reportingutils
 
 
 def action_report(colorizer, activity):

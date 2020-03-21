@@ -1,9 +1,9 @@
 from __future__ import print_function
 from collections import defaultdict
 
-from ti.dataaccess.utils import get_data_store
-from ti.dateutils.dateutils import *
-from ti.colors.colors import *
+from tt.dataaccess.utils import get_data_store
+from tt.dateutils.dateutils import *
+from tt.colors.colors import *
 
 
 def action_log(period):

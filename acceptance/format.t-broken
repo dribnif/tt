@@ -1,7 +1,7 @@
 Setup
 
   $ export SHEET_FILE=$CRAMTMP/sheet-format
-  $ alias ti="ti --no-color"
+  $ alias tt="tt --no-color"
 
 Confirm no sheet file
 
@@ -10,31 +10,31 @@ Confirm no sheet file
 
 Start a project, add content to current file
 
-  $ ti on a-project
+  $ tt on a-project
   Start working on a-project.
 
 End a project, add content to sheet file
 
-  $ ti fin
+  $ tt fin
   So you stopped working on a-project.
 
 Another one, with notes
 
-  $ ti on another-project
+  $ tt on another-project
   Start working on another-project.
-  $ ti note a simple note
+  $ tt note a simple note
   Yep, noted to another-project.
 
 End and check
 
-  $ ti fin
+  $ tt fin
   So you stopped working on another-project.
 
 Another one, with tags
 
-  $ ti on yet-another-project
+  $ tt on yet-another-project
   Start working on yet-another-project.
-  $ ti tag hella
+  $ tt tag hella
   Okay, tagged current work with 1 tag.
-  $ ti fin
+  $ tt fin
   So you stopped working on yet-another-project.

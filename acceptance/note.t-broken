@@ -1,30 +1,30 @@
 Setup
 
   $ export SHEET_FILE=$CRAMTMP/sheet-note
-  $ alias ti="ti --no-color"
+  $ alias tt="tt --no-color"
 
 Note when not working
 
-  $ ti note hee-haw
+  $ tt note hee-haw
   For all I know, you aren't working on anything. I don't know what to do.
-  See `ti -h` to know how to start working.
+  See `tt -h` to know how to start working.
   [1]
 
 Start working and then note
 
-  $ ti on donkey-music
+  $ tt on donkey-music
   Start working on donkey-music.
-  $ ti note hee-haw
+  $ tt note hee-haw
   Yep, noted to donkey-music.
 
 Add another longer note
 
-  $ ti note holla hoy with a longer musical? note
+  $ tt note holla hoy with a longer musical? note
   Yep, noted to donkey-music.
 
 Note with external editor
 FIXME: Need a better EDITOR to test with
 
-  $ EDITOR="false" ti note
+  $ EDITOR="false" tt note
   Please provide some text to be noted.
   [1]

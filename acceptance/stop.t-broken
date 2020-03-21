@@ -1,13 +1,13 @@
 Setup
 
   $ export SHEET_FILE=$CRAMTMP/sheet-stop
-  $ alias ti="ti --no-color"
+  $ alias tt="tt --no-color"
 
 Running stop when not working
 
-  $ ti stop
+  $ tt stop
   For all I know, you aren't working on anything. I don't know what to do.
-  See `ti -h` to know how to start working.
+  See `tt -h` to know how to start working.
   [1]
 
 Incorrectly running it (above) shouldn't create any file
@@ -17,25 +17,25 @@ Incorrectly running it (above) shouldn't create any file
 
 Start a task and then stop
 
-  $ ti on testing-my-foot
+  $ tt on testing-my-foot
   Start working on testing-my-foot.
-  $ ti stop
+  $ tt stop
   So you stopped working on testing-my-foot.
   $ test -f $SHEET_FILE
 
 stop a tagged activity
 
-  $ ti on tagged-one
+  $ tt on tagged-one
   Start working on tagged-one.
-  $ ti tag woohoo
+  $ tt tag woohoo
   Okay, tagged current work with 1 tag.
-  $ ti stop
+  $ tt stop
   So you stopped working on tagged-one.
 
 Check the current file existence
 
-  $ ti on awesomeness
+  $ tt on awesomeness
   Start working on awesomeness.
-  $ ti stop
+  $ tt stop
   So you stopped working on awesomeness.
   $ test -f $SHEET_FILE

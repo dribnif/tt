@@ -1,8 +1,8 @@
 from __future__ import print_function
 
-from ti.dataaccess.utils import get_data_store
-from ti.dateutils.dateutils import *
-from ti.actions.utils import reportingutils
+from tt.dataaccess.utils import get_data_store
+from tt.dateutils.dateutils import *
+from tt.actions.utils import reportingutils
 
 
 def action_csv():

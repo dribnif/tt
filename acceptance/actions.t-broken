@@ -1,11 +1,11 @@
 Setup
 
   $ export SHEET_FILE=$CRAMTMP/sheet-actions
-  $ alias ti="ti --no-color"
+  $ alias tt="tt --no-color"
 
 Running an unknown action
 
-  $ ti almost-definitely-a-nonexistent-action
+  $ tt almost-definitely-a-nonexistent-action
   I don't understand 'almost-definitely-a-nonexistent-action'
   [1]
 

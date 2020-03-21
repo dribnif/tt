@@ -1,4 +1,4 @@
-from ti.exceptz.exceptz import NoTask
+from tt.exceptz.exceptz import NoTask
 
 
 def ensure_working(data):
@@ -7,4 +7,4 @@ def ensure_working(data):
 
     raise NoTask("For all I know, you aren't working on anything. "
                  "I don't know what to do.\n"
-                 "See `ti -h` to know how to start working.")
+                 "See `tt -h` to know how to start working.")

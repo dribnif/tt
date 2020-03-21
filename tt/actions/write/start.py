@@ -1,6 +1,6 @@
-from ti.exceptz.exceptz import AlreadyOn
-from ti.dataaccess.utils import get_data_store
-from ti.dateutils.dateutils import formatted_str_for_isotime_str
+from tt.exceptz.exceptz import AlreadyOn
+from tt.dataaccess.utils import get_data_store
+from tt.dateutils.dateutils import formatted_str_for_isotime_str
 
 def action_start(colorizer, name, time):
     data = get_data_store().load()

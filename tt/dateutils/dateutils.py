@@ -4,10 +4,10 @@ import re
 
 from tzlocal import get_localzone
 from datetime import datetime, timedelta
-from ti.exceptz.exceptz import TIError
+from tt.exceptz.exceptz import TIError
 
 
-TI_TODAY_ENV_VAR = "TI_CURRENT_DAY"
+TT_TODAY_ENV_VAR = "TT_CURRENT_DAY"
 
 def get_local_timezone():
     return get_localzone()
@@ -43,7 +43,7 @@ def formatted_str_for_isotime_str(isotime_str, format_str):
 
 
 def get_current_day():
-    today_value = os.getenv(TI_TODAY_ENV_VAR, None)
+    today_value = os.getenv(TT_TODAY_ENV_VAR, None)
     return today_value
 
 def parse_time_multiformat(timestr):

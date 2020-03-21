@@ -3,9 +3,9 @@ import os
 import tempfile
 import subprocess
 
-from ti.exceptz.exceptz import InvalidYAML
-from ti.exceptz.exceptz import NoEditor
-from ti.dataaccess.utils import get_data_store
+from tt.exceptz.exceptz import InvalidYAML
+from tt.exceptz.exceptz import NoEditor
+from tt.dataaccess.utils import get_data_store
 
 
 def action_edit():
@@ -18,7 +18,7 @@ def action_edit():
     yml = yaml.safe_dump(data, default_flow_style=False, allow_unicode=True)
 
     cmd = os.getenv('EDITOR')
-    fd, temp_path = tempfile.mkstemp(suffix='.yml', prefix='ti.')
+    fd, temp_path = tempfile.mkstemp(suffix='.yml', prefix='tt.')
     with open(temp_path, "r+") as f:
         f.write(yml.replace('\n- ', '\n\n- '))
         f.seek(0)

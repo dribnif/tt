@@ -19,19 +19,19 @@ def read(*filenames, **kwargs):
 testing = bool({"pytest", "test"}.intersection(sys.argv))
 
 setup(
-    name="ti",
+    name="tt",
     version="0.9.0",
-    author="Shrikant Sharat & Trevor Bekolay",
-    author_email="tbekolay@gmail.com",
+    author="Shrikant Sharat & Trevor Bekolay & Bogdan Maxim",
+    author_email="bogdan.maxim@metamorphant.de",
     packages=find_packages(),
     include_package_data=True,
     scripts=[],
-    url="http://ti.sharats.me/",
-    description="A silly simple time tracker",
-    long_description=read("README.rst", "CHANGES.rst"),
+    url="https://github.com/dribnif/tt",
+    description="A simple, precise command-line based time tracker",
+    long_description=read("README.md", "CHANGES.md"),
     entry_points={
         "console_scripts": [
-            "ti = ti.ti:main",
+            "tt = tt.tt:main",
         ]
     },
     install_requires=["colorama", "pyyaml", 'tzlocal', 'pytz', 'mock', 'lark-parser'],

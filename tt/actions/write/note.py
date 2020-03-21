@@ -1,5 +1,5 @@
-from ti.dataaccess.utils import get_data_store
-from ti.actions.utils.utils import ensure_working
+from tt.dataaccess.utils import get_data_store
+from tt.actions.utils.utils import ensure_working
 
 
 def action_note(colorizer, content):

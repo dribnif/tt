@@ -1,6 +1,6 @@
 from unittest import TestCase
-from ti.dateutils.dateutils import *
-from ti.exceptz.exceptz import TIError
+from tt.dateutils.dateutils import *
+from tt.exceptz.exceptz import TIError
 import mock
 
 import pytz
@@ -10,27 +10,27 @@ test_timezone = "Europe/Berlin"
 
 class TestDateutils(TestCase):
 
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
     def test_utc_to_local_cet_winter_time(self, mocked):
         mocked.return_value=pytz.timezone(test_timezone)
         test_time_as_datetime = parse_isotime("2018-02-01T18:00:00.000001Z")
         time_h_m = utc_to_local(test_time_as_datetime).strftime("%H:%M")
         self.assertEqual("19:00", time_h_m)
 
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
     def test_utc_to_local_cet_summer_time(self, mocked):
         mocked.return_value = pytz.timezone(test_timezone)
         test_time_as_datetime = parse_isotime("2018-06-01T18:00:00.000001Z")
         time_h_m = utc_to_local(test_time_as_datetime).strftime("%H:%M")
         self.assertEqual("20:00", time_h_m)
 
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
     def test_isotime_utc_to_local_cet_winter_time(self, mocked):
         mocked.return_value = pytz.timezone(test_timezone)
         isotime_local = isotime_utc_to_local("2018-02-01T17:00:00.000001Z")
         self.assertEqual("2018-02-01T18:00:00.000001+01:00", isotime_local.isoformat())
 
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
     def test_isotime_utc_to_local_cet_summer_time(self, mocked):
         mocked.return_value = pytz.timezone(test_timezone)
         isotime_local = isotime_utc_to_local("2018-06-01T17:00:00.000001Z")
@@ -55,8 +55,8 @@ class TestDateutils(TestCase):
     def test_parse_time_multiformat_not_separated(self):
         self.assertRaises(TIError, parse_time_multiformat, "51n3p")
 
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
-    @mock.patch('ti.dateutils.dateutils.get_current_day')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_current_day')
     def test_isotime_utc_to_local_cet_summer_time(self, mocked_current_day, mocked_timezone ):
         mocked_timezone.return_value = pytz.timezone(test_timezone)
         mocked_current_day.return_value = "2018-11-21"
@@ -64,16 +64,16 @@ class TestDateutils(TestCase):
         self.date_time_assertion_helper(parsed_time, 2018, 11, 21, 0, 15, 0, 1)
         
         
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
-    @mock.patch('ti.dateutils.dateutils.get_current_day')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_current_day')
     def test_isotime_utc_to_local_cet_summer_time(self, mocked_current_day, mocked_timezone ):
         mocked_timezone.return_value = pytz.timezone(test_timezone)
         mocked_current_day.return_value = "2018-06-21"
         parsed_time=parse_time_h_m_to_iso("01:15")
         self.date_time_assertion_helper(parsed_time, 2018, 6, 20, 23, 15, 0, 1)
         
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
-    @mock.patch('ti.dateutils.dateutils.get_current_day')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_current_day')
     def test_isotime_utc_to_local_cet_summer_time(self, mocked_current_day, mocked_timezone ):
         mocked_timezone.return_value = pytz.timezone(test_timezone)
         mocked_current_day.return_value = "2018-11-21"
@@ -81,8 +81,8 @@ class TestDateutils(TestCase):
         self.date_time_assertion_helper(parsed_time, 2018, 11, 21, 0, 15, 0, 1)
         
         
-    @mock.patch('ti.dateutils.dateutils.get_local_timezone')
-    @mock.patch('ti.dateutils.dateutils.get_current_day')
+    @mock.patch('tt.dateutils.dateutils.get_local_timezone')
+    @mock.patch('tt.dateutils.dateutils.get_current_day')
     def test_isotime_utc_to_local_cet_summer_time(self, mocked_current_day, mocked_timezone ):
         mocked_timezone.return_value = pytz.timezone(test_timezone)
         mocked_current_day.return_value = "2018-06-21"

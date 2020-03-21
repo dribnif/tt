@@ -1,19 +1,19 @@
 Setup
 
   $ export SHEET_FILE=$CRAMTMP/sheet-tag
-  $ alias ti="ti --no-color"
+  $ alias tt="tt --no-color"
 
 When not working
 
-  $ ti tag a-tag
+  $ tt tag a-tag
   For all I know, you aren't working on anything. I don't know what to do.
-  See `ti -h` to know how to start working.
+  See `tt -h` to know how to start working.
   [1]
 
 Not giving a tag to add
 
-  $ ti on something
+  $ tt on something
   Start working on something.
-  $ ti tag
+  $ tt tag
   Please provide at least one tag to add.
   [1]
