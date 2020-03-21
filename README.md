@@ -1,4 +1,4 @@
-tt - A command-line based time tracker'
+tt - A command-line based time tracker
 ===========
 
 `tt` is a small stateful command line time tracking application
