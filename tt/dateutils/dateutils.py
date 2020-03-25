@@ -38,7 +38,7 @@ def local_to_utc(local_dt):
 
 
 def formatted_str_for_isotime_str(isotime_str, format_str):
-    localtime = isotime_utc_to_local(isotime_str);
+    localtime = isotime_utc_to_local(isotime_str)
     return localtime.strftime(format_str)
 
 
@@ -46,7 +46,14 @@ def get_current_day():
     today_value = os.getenv(TT_TODAY_ENV_VAR, None)
     return today_value
 
+
+def get_now():
+    return datetime.now()
+
+
 def parse_time_multiformat(timestr):
+    if timestr == "now":
+        return get_now()
     for time_format in ["%H:%M", "%H%M"]:
         try:
             settime = datetime.strptime(timestr, time_format)
@@ -55,11 +62,13 @@ def parse_time_multiformat(timestr):
             pass
 
     raise TIError("Can't parse your date string. Supported formats are 14:30 or 1430")
-    
+
+
 def get_current_year_local_tz():
     now = datetime.utcnow()
     now_local_dt = utc_to_local(now)
     return now_local_dt.strftime("%Y")
+
 
 def parse_time_h_m_to_iso(timestr):
     now = datetime.utcnow()

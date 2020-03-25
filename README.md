@@ -5,7 +5,7 @@ tt - A command-line based time tracker
 implemented in Python. Simple basic usage looks like this:
 
     $ tt start my-project 14:15
-    $ tt stop 18:00
+    $ tt stop now
 
 Alternatively you can skip the colon when entering times:
 
@@ -108,10 +108,10 @@ Adding a new time box:
     You have been working on fav-customer for about 2 hours, since 12:15;
     It is now 14:12.
 
-    $ tt stop 12:30
+    $ tt stop now
     So you stopped working on fav-customer.
 
-`start` and `stop` can take a time argument of the form `HH:mm` or `HHmm` at
+`start` and `stop` can take a time argument of the form `HH:mm`, `HHmm` or the keyword `now` at
 which to apply the action. They store the times normalized to GMT in the
 database, taking into account the DST values for your timezone. 
 
@@ -232,6 +232,15 @@ Now make sure you add the two export statements to your `~/.bashrc`, in order to
     
 Obviously: replace the values of the parameters with ones that make sense for you.
 
+Developing
+==========
+
+If you merely want to test your code changes live, you don't really need to "install" the program on your system. 
+You can instead just execute the file tt-dev.py with the arguments of your choosing:
+
+    $ ###assuming you are in the correct folder - the one where tt-dev.py is located
+    $ python3 tt-dev.py start my-awesome-project now
+    
 
 Developers
 ==========

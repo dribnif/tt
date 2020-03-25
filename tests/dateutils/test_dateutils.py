@@ -52,6 +52,16 @@ class TestDateutils(TestCase):
         self.assertEqual(20, time_parsed.hour)
         self.assertEqual(15, time_parsed.minute)
 
+    @mock.patch('tt.dateutils.dateutils.get_now')
+    def test_parse_time_multiformat_with_now_string(self, mocked_datetime_now):
+        mocked_datetime_now.return_value = datetime(2019, 3, 16, 20, 15)
+        time_parsed = parse_time_multiformat("now")
+        self.assertEqual(2019, time_parsed.year)
+        self.assertEqual(3, time_parsed.month)
+        self.assertEqual(16, time_parsed.day)
+        self.assertEqual(20, time_parsed.hour)
+        self.assertEqual(15, time_parsed.minute)
+
     def test_parse_time_multiformat_not_separated(self):
         self.assertRaises(TIError, parse_time_multiformat, "51n3p")
 
