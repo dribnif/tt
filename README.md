@@ -1,16 +1,19 @@
 tt - A command-line based time tracker
-===========
+======================================
 
 `tt` is a small stateful command line time tracking application
 implemented in Python. Simple basic usage looks like this:
 
     $ tt start my-project 14:15
+    $ tt note 'Got the business folk to talk to IT. Went well.'
     $ tt stop now
 
 Alternatively you can skip the colon when entering times:
 
     $ tt start my-project 0915
     $ tt stop 1020
+
+*tl;dr* [Installing using pip](#install-using-pip)
 
 What is tt?
 ===========
@@ -27,22 +30,22 @@ their time spent working on multiple projects and issue customer
 invoices based on their entries.
 
 Logical structure
----------------
+-----------------
 
 `tt` is made up of two main logical modules:
  
- - the actual time tracking module, that handles creation and editing of time entries (the C and U in **C**R**U**D).
- - the reporting module, which handles the evaluation of already entered time information (the R in C**R**UD).
+* the actual time tracking module, that handles creation and editing of time entries (the C and U in **C**R**U**D).
+* the reporting module, which handles the evaluation of already entered time information (the R in C**R**UD).
 
 Time boxes
 ----------
 `tt` enables the user to record their effort in the form of *time segments* or *time boxes*.
 
 A *time box* is defined by:
- - a name
- - a starting point
- - an end point
- - optional notes
+* a name
+* a starting point
+* an end point
+* optional notes
 
 
     $ tt start my-project 14:15
@@ -100,7 +103,7 @@ Usage
 =====
 
 Adding a new time box:
----------------------
+----------------------
     $ tt start fav-customer 12:15
     Started working on fav-customer at 12:15.
 
@@ -119,7 +122,7 @@ Therefore beware when editing the timestamps in the DB file directly - this type
 arithmetic gets brainfucky really quickly and you *will* probably cock it up!
 
 Enhance your time box with notes and tags:
--------------------------------------------
+------------------------------------------
 
 The **note** and **tag** commands only work if an active (open) time box
 exists, i.e. if the `stop` command hasn't been invoked yet:
@@ -214,8 +217,23 @@ There is no proper validation of time entries as of now:
 -   should the timeboxes defined for various projects overlap, this will
     be reflected in your reporting.
 
-Installing
-==========
+<a name="install-using-pip"/>Installing using pip
+====================
+
+Executing the following command should get you up and running: 
+
+    $ python3 -m pip install tt-time-tracker
+    
+Before you start using it, make sure you have your environment set up - the location of the time entry database and 
+the editor - by adding the appropriate environment variables to your `~/.bashrc` or similar.
+
+    export EDITOR='vim'
+    export SHEET_FILE='/home/johnson/timesheets/time-entries.json'
+
+Make sure you replace the values with ones that make sense to you.
+
+Installing from source
+======================
 
 After having checked out the sources by cloning this repo, change into the new folder and execute the setup script.
 
