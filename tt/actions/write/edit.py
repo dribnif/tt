@@ -31,8 +31,8 @@ def action_edit():
     os.remove(temp_path)
 
     try:
-        data = yaml.load(yml)
-    except:
+        data = yaml.load(yml, Loader=yaml.SafeLoader)
+    except yaml.YAMLError as exc:
         raise InvalidYAML("Oops, that YAML doesn't appear to be valid!")
 
     store.dump(data)

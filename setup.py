@@ -20,8 +20,8 @@ testing = bool({"pytest", "test"}.intersection(sys.argv))
 
 setup(
     name="tt",
-    version="0.9.0",
-    author="Shrikant Sharat & Trevor Bekolay & Bogdan Maxim",
+    version="1.0.0",
+    author="Bogdan Maxim",
     author_email="bogdan.maxim@metamorphant.de",
     packages=find_packages(),
     include_package_data=True,
