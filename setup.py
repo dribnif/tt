@@ -20,7 +20,7 @@ testing = bool({"pytest", "test"}.intersection(sys.argv))
 
 setup(
     name="tt-time-tracker",
-    version="1.0.1",
+    version="1.0.2",
     author="Bogdan Maxim",
     author_email="bogdan.maxim@metamorphant.de",
     packages=find_packages(),
