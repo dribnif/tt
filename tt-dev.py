@@ -10,6 +10,8 @@ from tt.dateutils.dateutils import to_datetime
 from tt.exceptz.exceptz import BadArguments
 from tt.exceptz.exceptz import TIError
 
+from tt.actions.utils import help
+
 from tt.actions.write import edit
 from tt.actions.write import start
 from tt.actions.write import stop
@@ -38,7 +40,8 @@ def parse_args(argv=sys.argv):
     tail = argv[2:]
 
     if head in ['-h', '--help', 'h', 'help']:
-        raise BadArguments()
+        fn = help.print_help
+        args = {}
 
     elif head in ['edit']:
         fn = edit.action_edit
