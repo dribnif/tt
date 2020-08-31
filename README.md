@@ -198,7 +198,7 @@ year*.
 
     $ tt calview 7
 
-Specifiying a different year for calview is done like so:
+Specifying a different year for calview is done like so:
 
     $ tt calview 1 2054
 
@@ -212,8 +212,9 @@ Caveats
 
 There is no proper validation of time entries as of now:
 
--   should your end time be before your starting time, this will be
-    reflected in your reporting.
+-   ~~should your end time be before your starting time, this will be
+    reflected in your reporting.~~ As of version 1.0.3, the end time needs to be after 
+    the start time of the timebox.
 -   should the timeboxes defined for various projects overlap, this will
     be reflected in your reporting.
 
