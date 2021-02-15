@@ -16,26 +16,49 @@ def action_calview(colorizer, month, year):
     print('Displaying all entries for ', colorizer.yellow(year+'-'+month),  ' grouped by day:', sep='')
 
     month_cal = calendar.monthcalendar(int(year),int(month))
-    
-    print("+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+")
-    print("|         " + colorizer.yellow("Monday") + "           |         " + colorizer.yellow("Tuesday") + "          |         "+ colorizer.yellow("Wednesday") + "        |         " + colorizer.yellow("Thursday") + "         |           "+ colorizer.yellow("Friday") + "         |")
-    print("+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+")
+
+    # "normal" beeings don't work on weekends (isSevenDayWeek = false default),
+    # in case you like working on saturdays or sundays calview will determine if something was logged
+    # if that's the case print the Weekend also in calview, else stay sane with Monday till Friday
+    isSevenDayWeek = bool(False)
+    for week in range(len(month_cal)):
+        weekdays = month_cal[week]
+        activity_saturday = get_activity(report, 0, weekdays[5], year, month)
+        activity_sunday = get_activity(report, 0, weekdays[6], year, month)
+        if activity_saturday != "" or activity_sunday != "":
+            isSevenDayWeek = bool(True)
+
+    header = "|         " + colorizer.yellow("Monday") + "           |         " + colorizer.yellow(
+        "Tuesday") + "          |         " + colorizer.yellow("Wednesday") + "        |         " + colorizer.yellow(
+        "Thursday") + "         |           " + colorizer.yellow("Friday") + "         |"
+    delimiter = "+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+ "
+    weekEnd = 5
+
+    if (isSevenDayWeek):
+        header += "          " + colorizer.yellow("Saturday") + "        |           " + colorizer.yellow(
+            "Sunday") + "         |"
+        delimiter += "--------------------------+--------------------------+"
+        weekEnd = 7
+
+    print(delimiter)
+    print(header)
+    print(delimiter)
     for week in range(len(month_cal)):
         weekdays = month_cal[week]
         #skip empty weeks completely
-        if weekdays[0] == 0 and weekdays[4] == 0:
+        if weekdays[0] == 0 and weekdays[weekEnd - 1] == 0:
             continue
         print("",  end="|")
-        for day_index in range(len(weekdays)-2):
+        for day_index in range(len(weekdays[0:weekEnd])):
             day_cell_header=""
             if weekdays[day_index] != 0:
                 day_cell_header=" "+ str(year)+"-"+month.zfill(2)+"-"+str(weekdays[day_index]).zfill(2)
             print(colorizer.blue(day_cell_header.ljust(26, ' ')),  end="|")
         print()
-        print("+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+")
-        print_week_activity(colorizer, weekdays,  5,  report,  year,  month)
+        print(delimiter)
+        print_week_activity(colorizer, weekdays[0:weekEnd],  5,  report,  year,  month)
         #print("WEEK DONE")
-        print("+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+")
+        print(delimiter)
         
 
 def print_week_activity(colorizer, current_week,  height_in_rows,  report,  year,  month):
@@ -45,25 +68,25 @@ def print_week_activity(colorizer, current_week,  height_in_rows,  report,  year
 
 def print_activity_at_index(colorizer, curr_row,  current_week,  report,  year,  month):
     print("",  end="|")    
-    for day_index in range(len(current_week)-2):
+    for day_index in range(len(current_week)):
         if current_week[day_index] == 0:
             print("".rjust(26, ' '),  end="|")
         else:
-            activity_str =  get_activity(colorizer, report,  curr_row, current_week[day_index],  year,  month)
+            activity_str =  get_activity(report,  curr_row, current_week[day_index],  year,  month)
             print(colorizer.green(activity_str.rjust(26, ' ')),  end="|")
 
-def get_activity(colorizer, report,  curr_row,  day_key,  year,  month):
-        report_key=str(year)+"-"+month.zfill(2)+"-"+str(day_key).zfill(2)
-        try:
-            activity_dict = report[report_key]
-            if curr_row < len(list(activity_dict)):
-                activity_key = list(activity_dict)[curr_row]
-                activity_duration = report[report_key][activity_key]
-                return activity_key + " : " + format_time(activity_duration) + " "
-        except:
-            return ""
-        return ""
-        
+def get_activity(report,  curr_row,  day_key,  year,  month):
+    report_key=str(year)+"-"+month.zfill(2)+"-"+str(day_key).zfill(2)
+    activity = ""
+    try:
+        activity_dict = report[report_key]
+        if curr_row < len(list(activity_dict)):
+            activity_key = list(activity_dict)[curr_row]
+            activity_duration = report[report_key][activity_key]
+            activity = activity_key + " : " + format_time(activity_duration) + " "
+    finally:
+        return activity
+
 def generate_day_based_report():
     data = get_data_store().load()
     work = data['work']
@@ -76,7 +99,7 @@ def generate_day_based_report():
                 report[day]
             except KeyError:
                 report[day] = defaultdict(lambda: timedelta())
-            report[day][item['name']] += duration 
+            report[day][item['name']] += duration
             #print ('report[', day,  "][", item['name'], "]=" ,  report[day][item['name']])
     return report
 
