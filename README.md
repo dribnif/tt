@@ -47,6 +47,7 @@ A *time box* is defined by:
 * an end point
 * optional notes
 
+Example: 
 
     $ tt start my-project 14:15
     $ tt note 'Twas an extremely difficult call we had this afternoon'
