@@ -31,7 +31,7 @@ def action_calview(colorizer, month, year):
     header = "|         " + colorizer.yellow("Monday") + "           |         " + colorizer.yellow(
         "Tuesday") + "          |         " + colorizer.yellow("Wednesday") + "        |         " + colorizer.yellow(
         "Thursday") + "         |           " + colorizer.yellow("Friday") + "         |"
-    delimiter = "+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+ "
+    delimiter = "+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+"
     weekEnd = 5
 
     if (isSevenDayWeek):

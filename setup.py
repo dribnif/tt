@@ -20,7 +20,7 @@ testing = bool({"pytest", "test"}.intersection(sys.argv))
 
 setup(
     name="tt-time-tracker",
-    version="1.0.3",
+    version="1.0.4",
     author="Bogdan Maxim",
     author_email="bogdan.maxim@metamorphant.de",
     packages=find_packages(),
@@ -35,7 +35,7 @@ setup(
             "tt = tt.tt:main",
         ]
     },
-    install_requires=["colorama", "pyyaml", 'tzlocal', 'pytz', 'mock', 'lark-parser'],
+    install_requires=["colorama", "pyyaml", 'tzlocal==2.1', 'pytz', 'mock', 'lark-parser'],
     setup_requires=["pytest-runner"] if testing else [],
     tests_require=["pytest", "cram", "pytest-cram"],
     extras_require={
