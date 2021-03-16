@@ -271,6 +271,11 @@ Based on `ti` originally created by Shrikant Sharat
 ([@sharat87](https://twitter.com/#!sharat87)), and maintained by
 ([@tbekolay](https://github.com/tbekolay)).
 
+Further Information
+===================
+
+For more context on tt, feel free to read this blog post [https://metamorphant.de/blog/posts/2020-06-21-tt-ubiquitous-time-tracking-for-command-line-aficionados/](https://metamorphant.de/blog/posts/2020-06-21-tt-ubiquitous-time-tracking-for-command-line-aficionados/)
+
 License
 =======
 
