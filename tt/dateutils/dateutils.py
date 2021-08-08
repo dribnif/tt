@@ -75,12 +75,14 @@ def parse_time_h_m_to_iso(timestr):
     
     try:
         settime = parse_time_multiformat(timestr)
-        x = now.replace(hour=settime.hour, minute=settime.minute, second=0, microsecond=1)
+        settime = local_to_utc(settime)
+        u = local_to_utc(now)
+        x = u.replace(hour=settime.hour, minute=settime.minute, second=0, microsecond=1)
         if get_current_day() is not None:
             currentday = datetime.strptime(get_current_day(), "%Y-%m-%d")
             y = x.replace(day=currentday.day, month=currentday.month, year=currentday.year)
-            return local_to_utc(y)
-        return local_to_utc(x)
+            return y
+        return x
     except Exception as e:
         print(e)
 
