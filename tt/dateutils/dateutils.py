@@ -71,7 +71,7 @@ def get_current_year_local_tz():
 
 
 def parse_time_h_m_to_iso(timestr):
-    now = datetime.utcnow()
+    now = get_now()
     
     try:
         settime = parse_time_multiformat(timestr)
