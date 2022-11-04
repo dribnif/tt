@@ -90,17 +90,19 @@ def get_activity(report,  curr_row,  day_key,  year,  month):
 def generate_day_based_report():
     data = get_data_store().load()
     work = data['work']
-    report=dict()
+    report = dict()
     for item in work:
-        if 'end' in item:
-            day = reportingutils.extract_day(item['start'])
-            duration = parse_isotime(item['end']) - parse_isotime(item['start'])
-            try:
-                report[day]
-            except KeyError:
-                report[day] = defaultdict(lambda: timedelta())
-            report[day][item['name']] += duration
-            #print ('report[', day,  "][", item['name'], "]=" ,  report[day][item['name']])
+        day = reportingutils.extract_day(item['start'])
+        end_time = parse_isotime(item['end']) if 'end' in item else datetime.utcnow()
+        duration = end_time - parse_isotime(item['start'])
+        try:
+            report[day]
+        except KeyError:
+            report[day] = defaultdict(lambda: timedelta())
+
+        item_name = item['name'] if 'end' in item else "~wip~" + item['name']
+        report[day][item_name] += duration
+        #print ('report[', day,  "][", item['name'], "]=" ,  report[day][item['name']])
     return report
 
 def format_time(duration_timedelta):
