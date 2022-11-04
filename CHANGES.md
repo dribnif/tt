@@ -1,4 +1,7 @@
 # Change overview
+# 1.0.6
+* **calview** improvement: show in progress timebox as well, assuming end-time to be "now"
+
 # 1.0.4
 * **calview** improvement: show weekend (Saturday and Sunday) in matrix view, if time has been logged on weekends. 
   Otherwise default to 5 day, Monday to Friday week. Contributed by [nedimAT](https://github.com/nedimAT).
