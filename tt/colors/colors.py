@@ -1,4 +1,5 @@
 from colorama import Fore
+from colorama import Back
 import re
 
 
@@ -33,6 +34,12 @@ class Colorizer(object):
     def red(self,str):
         if self.use_color:
             return Fore.RED + str + Fore.RESET
+        else:
+            return str
+
+    def grey(self,str):
+        if self.use_color:
+            return Fore.LIGHTBLACK_EX + str + Fore.RESET
         else:
             return str
 
