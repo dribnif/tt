@@ -9,6 +9,8 @@ from collections import defaultdict
 from tt.dateutils.dateutils import *
 from tt.dataaccess.utils import get_data_store
 from tt.actions.utils import reportingutils
+
+
 def action_calview(colorizer, month, year):
     report = generate_day_based_report()
     year =  get_current_year_local_tz() if year is None else year
@@ -17,7 +19,7 @@ def action_calview(colorizer, month, year):
 
     month_cal = calendar.monthcalendar(int(year),int(month))
 
-    # "normal" beeings don't work on weekends (isSevenDayWeek = false default),
+    # "normal" beings don't work on weekends (isSevenDayWeek = false default),
     # in case you like working on saturdays or sundays calview will determine if something was logged
     # if that's the case print the Weekend also in calview, else stay sane with Monday till Friday
     isSevenDayWeek = bool(False)
@@ -50,16 +52,18 @@ def action_calview(colorizer, month, year):
             continue
         print("",  end="|")
         for day_index in range(len(weekdays[0:weekEnd])):
-            day_cell_header=""
+            day_cell_header_iso_date = "".ljust(26, ' ')
+            day_cell_header_total_work = ""
             if weekdays[day_index] != 0:
-                day_cell_header=" "+ str(year)+"-"+month.zfill(2)+"-"+str(weekdays[day_index]).zfill(2)
-            print(colorizer.blue(day_cell_header.ljust(26, ' ')),  end="|")
+                day_cell_header_iso_date = " " + str(year)+"-"+month.zfill(2)+"-"+str(weekdays[day_index]).zfill(2)
+                day_cell_header_total_work = get_day_total_work_time(report, year, month, weekdays[day_index]) + " "
+            print(colorizer.blue(day_cell_header_iso_date) + colorizer.grey(day_cell_header_total_work),  end="|")
         print()
         print(delimiter)
         print_week_activity(colorizer, weekdays[0:weekEnd],  5,  report,  year,  month)
         #print("WEEK DONE")
         print(delimiter)
-        
+
 
 def print_week_activity(colorizer, current_week,  height_in_rows,  report,  year,  month):
    for curr_row in range(height_in_rows):
@@ -72,8 +76,16 @@ def print_activity_at_index(colorizer, curr_row,  current_week,  report,  year, 
         if current_week[day_index] == 0:
             print("".rjust(26, ' '),  end="|")
         else:
-            activity_str =  get_activity(report,  curr_row, current_week[day_index],  year,  month)
+            activity_str = get_activity(report,  curr_row, current_week[day_index],  year,  month)
             print(colorizer.green(activity_str.rjust(26, ' ')),  end="|")
+
+
+def abbreviate_name(the_string, maxlength = 16):
+    if len(the_string) > maxlength:
+        return the_string[:(maxlength-4)] + ".." + the_string[-2:]
+    else:
+        return the_string
+
 
 def get_activity(report,  curr_row,  day_key,  year,  month):
     report_key=str(year)+"-"+month.zfill(2)+"-"+str(day_key).zfill(2)
@@ -83,7 +95,7 @@ def get_activity(report,  curr_row,  day_key,  year,  month):
         if curr_row < len(list(activity_dict)):
             activity_key = list(activity_dict)[curr_row]
             activity_duration = report[report_key][activity_key]
-            activity = activity_key + " : " + format_time(activity_duration) + " "
+            activity = abbreviate_name(activity_key) + " : " + format_time(activity_duration) + " "
     finally:
         return activity
 
@@ -104,6 +116,20 @@ def generate_day_based_report():
         report[day][item_name] += duration
         #print ('report[', day,  "][", item['name'], "]=" ,  report[day][item['name']])
     return report
+
+
+def get_day_total_work_time(report, year, month, day_key):
+    report_date_key = str(year) + "-" + month.zfill(2) + "-" + str(day_key).zfill(2)
+    duration_as_str = "              "
+    try:
+        activity_dict = report[report_date_key]
+        duration = timedelta(minutes=0, seconds=0)
+        for activity_key in activity_dict.keys():
+            duration += activity_dict[activity_key]
+        duration_as_str = "     \u03A3 = " + format_time(duration)
+    finally:
+        return duration_as_str
+
 
 def format_time(duration_timedelta):
     return format_time_seconds(duration_timedelta.seconds)
