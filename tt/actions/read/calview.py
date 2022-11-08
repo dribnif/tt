@@ -77,7 +77,10 @@ def print_activity_at_index(colorizer, curr_row,  current_week,  report,  year, 
             print("".rjust(26, ' '),  end="|")
         else:
             activity_str = get_activity(report,  curr_row, current_week[day_index],  year,  month)
-            print(colorizer.green(activity_str.rjust(26, ' ')),  end="|")
+            if activity_str[:5] == '~wip~':
+                print(colorizer.cyan(activity_str.rjust(26, ' ')), end="|")
+            else:
+                print(colorizer.green(activity_str.rjust(26, ' ')),  end="|")
 
 
 def abbreviate_name(the_string, maxlength = 16):
