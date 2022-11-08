@@ -1,5 +1,4 @@
 from colorama import Fore
-from colorama import Back
 import re
 
 
@@ -21,6 +20,10 @@ def ljust_with_color(str, n):
     return str.ljust(n + len_color(str))
 
 
+def apply_color(ansicode_fore, str):
+    return ansicode_fore + str + Fore.RESET
+
+
 class Colorizer(object):
     def __init__(self, use_color):
         self.use_color = use_color
@@ -33,30 +36,37 @@ class Colorizer(object):
 
     def red(self,str):
         if self.use_color:
-            return Fore.RED + str + Fore.RESET
+            return apply_color(Fore.RED, str)
         else:
             return str
 
     def grey(self,str):
         if self.use_color:
-            return Fore.LIGHTBLACK_EX + str + Fore.RESET
+            return apply_color(Fore.LIGHTBLACK_EX, str)
+        else:
+            return str
+
+    def cyan(self, str):
+        if self.use_color:
+            return apply_color(Fore.CYAN, str)
         else:
             return str
 
     def green(self,str):
         if self.use_color:
-            return Fore.GREEN + str + Fore.RESET
+            return apply_color(Fore.GREEN, str)
         else:
             return str
 
     def yellow(self,str):
         if self.use_color:
-            return Fore.YELLOW + str + Fore.RESET
+            return apply_color(Fore.YELLOW, str)
         else:
             return str
 
     def blue(self,str):
         if self.use_color:
-            return Fore.BLUE + str + Fore.RESET
+            return apply_color(Fore.BLUE, str)
         else:
             return str
+
