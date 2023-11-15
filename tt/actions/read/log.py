@@ -6,14 +6,21 @@ from tt.dateutils.dateutils import *
 from tt.colors.colors import *
 
 
-def action_log(period):
+def action_log(period=None):
     data = get_data_store().load()
     work = data['work']
     log = defaultdict(lambda: {'delta': timedelta()})
     current = None
-
+    if period is not None:
+        period = [datetime.fromisoformat(dt) for dt in period]
     for item in work:
         start_time = parse_isotime(item['start'])
+
+        if period is not None:
+            if start_time < period[0]:
+                continue
+            if len(period) > 1 and start_time > period[1]:
+                continue
 
         if 'end' in item:
             log[item['name']]['delta'] += (

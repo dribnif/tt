@@ -69,7 +69,10 @@ def parse_args(argv=sys.argv):
 
     elif head in ['log']:
         fn = log.action_log
-        args = {'period': tail[0] if tail else None}
+        if len(tail) > 2:
+            raise BadArguments(
+                'Please provide no more than 2 arguments to log (start and end datetime in ISO8601 format)')
+        args = {'period': tail}
 
     elif head in ['csv']:
         fn = csv.action_csv
