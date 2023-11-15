@@ -77,9 +77,7 @@ def parse_args(argv=sys.argv):
 
     elif head in ['report']:
         fn = report.action_report
-        if not tail:
-            raise BadArguments('Please provide the name of the activity for which to generate the report')
-        args = {'colorizer': colorizer, 'activity': tail[0]}
+        args = {'colorizer': colorizer, 'activity': tail[0] if tail else None}
         
     elif head in ['calview']:
         fn = calview.action_calview
