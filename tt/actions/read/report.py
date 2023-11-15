@@ -29,7 +29,7 @@ def action_report(colorizer, activity):
             report[day]['end_time'] = get_max_date(report[day]['end_time'], end_time)
             total_time += duration.seconds
 
-    print('weekday', sep, 'date', sep, 'total duration', sep, 'start time', sep, 'end time', sep, 'break', sep,
+    print('weekday', sep, 'date', sep, 'start time', sep, 'end time', sep, 'break', sep, 'total duration', sep,
           'description', sep)
 
     for date, details in sorted(report.items()):
