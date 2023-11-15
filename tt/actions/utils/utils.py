@@ -11,6 +11,6 @@ def ensure_working(data):
 
 
 def ensure_end_after_start(entry, end_time):
-    if end_time <= entry['start']:
+    if end_time < entry['start']:
         raise BadArguments("The task is supposed to end before it has begun or at the same time "
                            "You seem confused. Now I'm confused. Aborting...")
