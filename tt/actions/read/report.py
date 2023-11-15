@@ -37,7 +37,7 @@ def action_report(colorizer, activity):
         end_time = utc_to_local(details['end_time']).strftime("%H:%M")
         break_duration = get_break_duration(details['start_time'], details['end_time'], details['sum'])
         print(details['weekday'], sep, date, sep, start_time, sep, end_time, sep,
-              format_time(break_duration,colorizer), sep, format_time(details['sum'],colorizer), sep, details['notes'], sep="")
+              format_time(break_duration), sep, format_time(details['sum'],colorizer), sep, details['notes'], sep="")
 
     should_hours = 8 * len(report.items())
     should_hours_str = str(should_hours) + ':00'
@@ -51,14 +51,16 @@ def get_break_duration(start_time, end_time, net_work_duration):
     return total_work_duration - net_work_duration
 
 
-def format_time(duration_timedelta, colorizer):
+def format_time(duration_timedelta, colorizer=None):
     return format_time_seconds(duration_timedelta.seconds, colorizer)
 
 
-def format_time_seconds(duration_secs, colorizer):
+def format_time_seconds(duration_secs, colorizer=None):
     hours, rem = divmod(duration_secs, 3600)
     mins, secs = divmod(rem, 60)
     formatted_time_str = str(hours).rjust(2, str('0')) + ':' + str(mins).rjust(2, str('0'))
+    if colorizer is None:
+        return formatted_time_str
     if hours >= 8:
         return colorizer.green(formatted_time_str)
     else:
