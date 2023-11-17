@@ -48,7 +48,6 @@ def action_log(period=[]):
         if secs:
             tmsg.append(str(secs) + ' second' + ('s' if secs > 1 else ''))
 
-        print(tmsg)
         log[name]['tmsg'] = ', '.join(tmsg)[::-1].replace(',', '& ', 1)[::-1]
 
     for name, item in sorted(log.items(), key=(lambda x: x[0]), reverse=True):
