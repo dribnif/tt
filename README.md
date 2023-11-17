@@ -158,6 +158,11 @@ Get a log of all activities with the `log` (or `l`) command:
 
     $ tt log
 
+Get a log of all activities started within a time period:
+
+    $ tt log 2023-11-13 2023-11-15T13:00:00
+
+Accepts datetimes in ISO8601 format. End datetime not required.
 ### csv
 
 Get a list of all your individual log entries in CSV format, so that they can be imported
