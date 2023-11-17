@@ -7,23 +7,30 @@ from tt.dataaccess.utils import get_data_store
 from tt.actions.utils import reportingutils
 
 
-def action_report(colorizer, activity):
-    print('Displaying all entries for ', colorizer.yellow(activity), ' grouped by day:', sep='')
+def action_report(colorizer, activity=None):
+    if activity is None:
+        print('Displaying all entries grouped by day:', sep='')
+    else:
+        print('Displaying all entries for ', colorizer.yellow(activity), ' grouped by day:', sep='')
     print()
     sep = ' | '
     data = get_data_store().load()
     work = data['work']
-    report = defaultdict(lambda: {'sum': timedelta(), 'notes': '', 'weekday': '', 'start_time': None, 'end_time': None})
+    report = defaultdict(lambda: {'sum': timedelta(), 'notes': [], 'weekday': '', 'start_time': None, 'end_time': None})
 
     total_time = 0
     for item in work:
-        if item['name'] == activity and 'end' in item:
+        if (item['name'] == activity or activity is None) and 'end' in item:
             start_time = parse_isotime(item['start'])
             end_time = parse_isotime(item['end'])
             day = reportingutils.extract_day(item['start'])
             duration = parse_isotime(item['end']) - parse_isotime(item['start'])
             report[day]['sum'] += duration
-            report[day]['notes'] += reportingutils.get_notes_from_workitem(item)
+            if activity is None:
+                notes = reportingutils.get_notes_from_workitem(item)
+                report[day]['notes'].append(item['name'] + (f": {notes}" if notes else ""))
+            else:
+                report[day]['notes'].append(reportingutils.get_notes_from_workitem(item))
             report[day]['weekday'] = reportingutils.extract_day_custom_formatter(item['start'], '%a')
             report[day]['start_time'] = get_min_date(report[day]['start_time'], start_time)
             report[day]['end_time'] = get_max_date(report[day]['end_time'], end_time)
@@ -37,7 +44,7 @@ def action_report(colorizer, activity):
         end_time = utc_to_local(details['end_time']).strftime("%H:%M")
         break_duration = get_break_duration(details['start_time'], details['end_time'], details['sum'])
         print(details['weekday'], sep, date, sep, start_time, sep, end_time, sep,
-              format_time(break_duration), sep, format_time(details['sum'],colorizer), sep, details['notes'], sep="")
+              format_time(break_duration), sep, format_time(details['sum'],colorizer), sep, (' / ' if '/' not in sep else ', ').join(details['notes']), sep="")
 
     should_hours = 8 * len(report.items())
     should_hours_str = str(should_hours) + ':00'
