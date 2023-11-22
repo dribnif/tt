@@ -5,7 +5,7 @@ def get_notes_from_workitem(item):
     notes = ''
     if 'notes' in item:
         for note in item['notes']:
-            notes += note + ' ; '
+            notes += note + '; '
     return notes
 
 
