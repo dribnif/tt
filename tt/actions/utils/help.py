@@ -58,7 +58,7 @@ def print_help():
           '      editors such as LibreOffice Sheets. The separator is the pipe symbol.\n'
           '    Examples:\n'
           '      tt csv\n'
-          '      tt csv --nocolor > /tmp/allentries.csv ; libreoffice /tmp/allentries.csv')
+          '      tt csv > /tmp/allentries.csv ; libreoffice /tmp/allentries.csv')
 
     print()
     print('  status \n'
@@ -66,8 +66,7 @@ def print_help():
           '      Shows all information pertaining to an open work package or an appropriate message, if one cannot\n'
           '      be found. \n'
           '    Examples:\n'
-          '      tt status\n'
-          '      tt status --nocolor')
+          '      tt status')
     print()
     print('  report [WORK_PACKAGE] \n'
           '    Description:\n'
@@ -77,8 +76,7 @@ def print_help():
           '      cli tools. \n'
           '    Examples:\n'
           '      tt report cleaning\n'
-          '      tt report cleaning --nocolor\n'
-          '      tt report cleaning --nocolor | grep 2019-03 ')
+          '      tt report cleaning | grep 2019-03 ')
     print()
     print('  calview [MONTH] [YEAR] \n'
           '    Description:\n'
@@ -86,7 +84,6 @@ def print_help():
           '      The [YEAR] parameter is optional; if omitted, it defaults to the current year. \n'
           '    Examples:\n'
           '      tt calview 12\n'
-          '      tt calview 11 --nocolor\n'
           '      tt calview 10 2030')
     print()
     print('For the full documentation, check out http://github.com/dribnif/tt')
