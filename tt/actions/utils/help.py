@@ -75,6 +75,8 @@ def print_help():
           '      aggregated entry per day, based on the entire database content. If you need to restrict the report\n'
           '      to certain periods, such as a specific month, feel free to pipe the output through grep or other\n'
           '      cli tools. If no work package is specified, all activities will be reported.\n'
+          '      By default, the report assumes you work 8 hours per day. You can change this by setting the\n'
+          '      environment variable TT_HOURS_PER_DAY to the number of hours you work per day.\n'
           '    Examples:\n'
           '      tt report\n'
           '      tt report cleaning\n'
