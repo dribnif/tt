@@ -6,6 +6,9 @@ from tt.dateutils.dateutils import *
 from tt.dataaccess.utils import get_data_store
 from tt.actions.utils import reportingutils
 
+import os
+
+TT_HOURS_PER_DAY = float(os.getenv('TT_HOURS_PER_DAY', 8))
 
 def action_report(colorizer, activity=None):
     if activity is None:
@@ -44,7 +47,7 @@ def action_report(colorizer, activity=None):
               format_time(break_duration), sep, format_time(details['sum'], colorizer), sep,
               format_notes(details['notes'], activity), sep="")
 
-    should_hours = 8 * len(report.items())
+    should_hours = TT_HOURS_PER_DAY * len(report.items())
     should_hours_str = str(should_hours) + ':00'
     print()
     print('Based on your current entries, you should have logged ', colorizer.green(should_hours_str),
@@ -77,7 +80,7 @@ def format_time_seconds(duration_secs, colorizer=None):
     formatted_time_str = str(hours).rjust(2, str('0')) + ':' + str(mins).rjust(2, str('0'))
     if colorizer is None:
         return formatted_time_str
-    if hours >= 8:
+    if hours >= TT_HOURS_PER_DAY:
         return colorizer.green(formatted_time_str)
     else:
         return colorizer.red(formatted_time_str)

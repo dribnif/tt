@@ -154,11 +154,11 @@ See your entries:
 
 ### log
 
-Get a log of all activities with the `log` (or `l`) command:
+Get a log of the total time spent on each activity:
 
     $ tt log
 
-Get a log of all activities started within a time period:
+Get a log of the total time spent on each activity, filtered by activities started within a given time period:
 
     $ tt log 2023-11-13 2023-11-15T13:00:00
 

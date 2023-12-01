@@ -74,11 +74,23 @@ def print_help():
           '      Creates an aggregated daily report for the work package you specify as parameter. It creates one\n'
           '      aggregated entry per day, based on the entire database content. If you need to restrict the report\n'
           '      to certain periods, such as a specific month, feel free to pipe the output through grep or other\n'
-          '      cli tools. \n'
+          '      cli tools. If no work package is specified, all activities will be reported.\n'
+          '      By default, the report assumes you work 8 hours per day. You can change this by setting the\n'
+          '      environment variable TT_HOURS_PER_DAY to the number of hours you work per day.\n'
           '    Examples:\n'
+          '      tt report\n'
           '      tt report cleaning\n'
           '      tt report cleaning --nocolor\n'
           '      tt report cleaning --nocolor | grep 2019-03 ')
+    print()
+    print('  log [START_DATETIME] [END_DATETIME] \n'
+          '    Description:\n'
+          '      Prints a log of the total time spent on each activity, optionally filtered by activities started\n'
+          '      within a given time period\n'
+          '    Examples:\n'
+          '      tt log\n'
+          '      tt log 2023-11-13\n'
+          '      tt log 2023-11-13 2023-11-15T13:00:00')
     print()
     print('  calview [MONTH] [YEAR] \n'
           '    Description:\n'
