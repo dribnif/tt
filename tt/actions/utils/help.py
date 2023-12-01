@@ -58,7 +58,7 @@ def print_help():
           '      editors such as LibreOffice Sheets. The separator is the pipe symbol.\n'
           '    Examples:\n'
           '      tt csv\n'
-          '      tt csv --nocolor > /tmp/allentries.csv ; libreoffice /tmp/allentries.csv')
+          '      tt csv --no-color > /tmp/allentries.csv ; libreoffice /tmp/allentries.csv')
 
     print()
     print('  status \n'
@@ -67,7 +67,7 @@ def print_help():
           '      be found. \n'
           '    Examples:\n'
           '      tt status\n'
-          '      tt status --nocolor')
+          '      tt status --no-color')
     print()
     print('  report [WORK_PACKAGE] \n'
           '    Description:\n'
@@ -80,8 +80,8 @@ def print_help():
           '    Examples:\n'
           '      tt report\n'
           '      tt report cleaning\n'
-          '      tt report cleaning --nocolor\n'
-          '      tt report cleaning --nocolor | grep 2019-03 ')
+          '      tt report cleaning --no-color\n'
+          '      tt report cleaning --no-color | grep 2019-03 ')
     print()
     print('  log [START_DATETIME] [END_DATETIME] \n'
           '    Description:\n'
@@ -98,7 +98,7 @@ def print_help():
           '      The [YEAR] parameter is optional; if omitted, it defaults to the current year. \n'
           '    Examples:\n'
           '      tt calview 12\n'
-          '      tt calview 11 --nocolor\n'
+          '      tt calview 11 --no-color\n'
           '      tt calview 10 2030')
     print()
     print('For the full documentation, check out http://github.com/dribnif/tt')

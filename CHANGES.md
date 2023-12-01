@@ -1,4 +1,12 @@
 # Change overview
+# 1.0.11
+  **log** improvement: allow the user to define a timebox for which to display logged activities
+  **report** improvements: report all activities if none specified, also consider the value of TT_HOURS_PER_DAY
+  when coloring in the total amount of hours worked
+  **help** updates to reflect the new functionality that was added
+  other minor bugfixes
+  Most of the features contributed by [chigozienri](https://github.com/chigozienri)
+
 # 1.0.6
 * **calview** improvement: show in progress timebox as well, assuming end-time to be "now"
 
@@ -7,4 +15,4 @@
   Otherwise default to 5 day, Monday to Friday week. Contributed by [nedimAT](https://github.com/nedimAT).
 
 # 1.0.3
-* as of this version, the end time of an entry must be **after** the start time of said entry 
+* as of this version, the end time of an entry must be **after** the start time of said entry
