@@ -20,7 +20,7 @@ def action_report(colorizer, activity=None):
     data = get_data_store().load()
     work = data['work']
     report = defaultdict(
-        lambda: {'sum': timedelta(), 'notes': dict(), 'weekday': '', 'start_time': None, 'end_time': None})
+        lambda: {'sum': timedelta(), 'notes': defaultdict(lambda: ''), 'weekday': '', 'start_time': None, 'end_time': None})
 
     total_time = 0
     for item in work:
@@ -30,7 +30,7 @@ def action_report(colorizer, activity=None):
             day = reportingutils.extract_day(item['start'])
             duration = parse_isotime(item['end']) - parse_isotime(item['start'])
             report[day]['sum'] += duration
-            report[day]['notes'][item['name']] = reportingutils.get_notes_from_workitem(item)
+            report[day]['notes'][item['name']] += reportingutils.get_notes_from_workitem(item)
             report[day]['weekday'] = reportingutils.extract_day_custom_formatter(item['start'], '%a')
             report[day]['start_time'] = get_min_date(report[day]['start_time'], start_time)
             report[day]['end_time'] = get_max_date(report[day]['end_time'], end_time)
