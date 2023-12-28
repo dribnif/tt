@@ -34,6 +34,15 @@ def print_help():
           '      tt note \'The quick brown fox humps the lazy bear\'')
 
     print()
+    print('  ect | edit-current-timebox\n'
+          '    Description:\n'
+          '      Edits the notes of the current timebox in an editor of your choosing, yaml formatted. \n'
+          '      For information on how to set the editor, please refer to the help entry of the <<edit>> command\n'
+          '    Examples:\n'
+          '      tt ect\n'
+          '      tt edit-current-timebox')
+
+    print()
     print('  tag [TAG0] [TAG1] [TAG2]\n'
           '    Description:\n'
           '      Adds a list of tags to an open work package\n'
