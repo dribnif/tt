@@ -1,4 +1,7 @@
 # Change overview
+# 1.1.0
+  **ect | edit-current-timebox** new command that allows you to edit the notes within your timebox from an
+  editor of your choice
 # 1.0.11
   **log** improvement: allow the user to define a timebox for which to display logged activities
   **report** improvements: report all activities if none specified, also consider the value of TT_HOURS_PER_DAY

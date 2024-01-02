@@ -13,6 +13,7 @@ from tt.exceptz.exceptz import TIError
 from tt.actions.utils import help
 
 from tt.actions.write import edit
+from tt.actions.write import ect
 from tt.actions.write import start
 from tt.actions.write import stop
 from tt.actions.write import tag
@@ -102,6 +103,10 @@ def parse_args(argv=sys.argv):
 
         fn = note.action_note
         args = {'colorizer': colorizer, 'content': ' '.join(tail)}
+
+    elif head in ['edit-current-timebox', 'ect']:
+        fn = ect.action_edit_current_timebox
+        args = {}
 
     else:
         raise BadArguments("I don't understand %r" % (head,))

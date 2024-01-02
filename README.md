@@ -130,6 +130,12 @@ exists, i.e. if the `stop` command hasn't been invoked yet:
 
     $ tt note "implement new user authentication"
 
+In order to reduce boilerplate text when adding loads of notes to your timebox,
+tt also allows you to edit the notes of your current timebox only. Do this with the command **ect** or
+**edit-current-timebox**, which will launch the editor you've selected (see next chapter on how to do that):
+
+    $ tt ect
+
 Tag your activity for added reportability:
 
     $ tt tag private
