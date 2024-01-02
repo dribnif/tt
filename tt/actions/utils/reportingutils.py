@@ -9,13 +9,13 @@ def get_notes_from_workitem(item):
     return notes
 
 
-def extract_day_custom_formatter(datetime_local_tz, format_string):
-    local_dt = isotime_utc_to_local(datetime_local_tz)
+def extract_day_custom_formatter(datetime_utc_tz, format_string):
+    local_dt = isotime_utc_to_local(datetime_utc_tz)
     return local_dt.strftime(format_string)
 
 
-def extract_day(datetime_local_tz):
-    return extract_day_custom_formatter(datetime_local_tz, '%Y-%m-%d')
+def extract_day(datetime_utc_tz):
+    return extract_day_custom_formatter(datetime_utc_tz, '%Y-%m-%d')
 
 
 def remove_seconds(timedelta):
