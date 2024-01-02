@@ -9,14 +9,17 @@ from tt.exceptz.exceptz import TIError
 
 TT_TODAY_ENV_VAR = "TT_CURRENT_DAY"
 
+
 def get_local_timezone():
     return get_localzone()
+
 
 #   returns a datetime
 def utc_to_local(utc_dt):
     local_tz = get_local_timezone()
     local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
     return local_tz.normalize(local_dt)
+
 
 #   returns a datetime
 def isotime_utc_to_local(isotime_utc):
@@ -25,6 +28,7 @@ def isotime_utc_to_local(isotime_utc):
 
 def parse_isotime(isotime_str):
     return datetime.strptime(isotime_str, '%Y-%m-%dT%H:%M:%S.%fZ')
+
 
 #   returns a datetime for an input string
 def to_datetime(timestr):

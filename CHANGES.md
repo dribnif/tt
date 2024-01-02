@@ -1,4 +1,6 @@
 # Change overview
+# 1.1.1
+  **ect | edit-current-timebox** fix: UTC datetime was being displayed in the comment when editing the current timebox
 # 1.1.0
   **ect | edit-current-timebox** new command that allows you to edit the notes within your timebox from an
   editor of your choice

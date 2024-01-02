@@ -4,9 +4,14 @@ import tempfile
 import subprocess
 
 from tt.actions.utils.utils import ensure_working
+from tt.actions.utils import reportingutils
 from tt.exceptz.exceptz import InvalidYAML
 from tt.exceptz.exceptz import NoEditor
 from tt.dataaccess.utils import get_data_store
+
+
+def get_formatted_start_date(date_as_iso_string):
+    return reportingutils.extract_day_custom_formatter(date_as_iso_string, '%H:%M on %Y-%m-%d')
 
 
 def action_edit_current_timebox():
@@ -27,8 +32,8 @@ def action_edit_current_timebox():
     fd, temp_path = tempfile.mkstemp(suffix='.yml', prefix='tt-current-timebox-edit.')
 
     with open(temp_path, "r+") as f:
-        f.write("#you are editing the current timebox: " + current['name'] + "\n")
-        f.write("#beginning: " + current['start'][:-8] + "\n" )
+        f.write("# You are editing the current timebox named '" + current['name'] + "'\n")
+        f.write("# Start time: " + get_formatted_start_date(current['start']) + "\n" )
         f.write(the_yml)
         f.seek(0)
         subprocess.check_call(cmd + ' ' + temp_path, shell=True)
