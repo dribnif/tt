@@ -2,7 +2,7 @@ _jq() {
     [[ -z $(type -P jq) ]] && return 1
 
     local json=${SHEET_FILE:-~/.tt-sheet.json}
-    jq -r '[.[][].'"$1"' | select(. != null)] | unique | flatten | @tsv' ${json} 2>/dev/null
+    jq -r '[.[][].'"$1"' | select(. != null)] | flatten | unique | @tsv' ${json} 2>/dev/null
 }
 
 _tt() {
