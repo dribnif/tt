@@ -61,6 +61,15 @@ def print_help():
           '      tt edit')
 
     print()
+    print('  day [DATE] \n'
+          '    Description:\n'
+          '      Displays a detailed chronological breakdown of your timeboxes for a specific day.\n'
+          '      If no date is provided, it defaults to today.\n'
+          '    Examples:\n'
+          '      tt day\n'
+          '      tt day 2026-04-17\n'
+          '      tt day --no-color')
+    print()
     print('  csv \n'
           '    Description:\n'
           '      Lists all your individual entries in a comma-separated format, for ease of import into spreadsheet\n'

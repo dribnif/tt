@@ -199,6 +199,18 @@ Same trick applies here. Beware that the CSV separator is in this case
 the pipe symbol `|`, since semicolons are used for concatenating all the
 different note entries into one big note field per day.
 
+### day
+
+Get a detailed, chronological breakdown of your timeboxes for a specific day. If no date is provided, it defaults to today:
+
+    $ tt day
+
+You can also audit a specific date in the past by providing it in `YYYY-MM-DD` format:
+
+    $ tt day 2026-04-17
+
+This command provides a micro-level audit of your day, displaying the exact start and stop times, calculated durations, and project names. Any notes attached to your timeboxes will be cleanly word-wrapped to fit your terminal without breaking the tabular layout.
+
 ### calview
 
 Doublecheck your entries per month and gain an overview of your effort

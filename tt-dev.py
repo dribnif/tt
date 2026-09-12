@@ -19,7 +19,7 @@ from tt.actions.write import stop
 from tt.actions.write import tag
 from tt.actions.write import note
 
-from tt.actions.read import log
+from tt.actions.read import log, day
 from tt.actions.read import csv
 from tt.actions.read import report
 from tt.actions.read import calview
@@ -89,6 +89,12 @@ def parse_args(argv=sys.argv):
             raise BadArguments(
                 'Please provide the month [optionally followed by the year] for which to generate the activity report')
         args = {'colorizer': colorizer, 'month': tail[0], 'year': tail[1] if len(tail) > 1 else None}
+
+    elif head in ['day']:
+        fn = day.action_day
+        if len(tail) > 1:
+            raise BadArguments('Please provide no more than 1 argument to day (the date in YYYY-MM-DD format)')
+        args = {'colorizer': colorizer, 'target_date_str': tail[0] if tail else None}
 
     elif head in ['tag']:
         if not tail:

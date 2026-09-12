@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 import io
 import sys
-
-
 from setuptools import find_packages, setup
-
 
 def read(*filenames, **kwargs):
     encoding = kwargs.get("encoding", "utf-8")
@@ -15,12 +12,9 @@ def read(*filenames, **kwargs):
             buf.append(f.read())
     return sep.join(buf)
 
-
-testing = bool({"pytest", "test"}.intersection(sys.argv))
-
 setup(
     name="tt-time-tracker",
-    version="1.1.1",
+    version="1.1.2", # Bumped version!
     author="Bogdan Maxim",
     author_email="bogdan.maxim@metamorphant.de",
     packages=find_packages(),
@@ -35,11 +29,17 @@ setup(
             "tt = tt.tt:main",
         ]
     },
-    install_requires=["colorama", "pyyaml", 'tzlocal==2.1', 'pytz', 'mock'],
-    setup_requires=["pytest-runner"] if testing else [],
-    tests_require=["pytest", "cram", "pytest-cram"],
+    # tzlocal pinned strictly below 3.0 to prevent pytz compatibility breaks
+    install_requires=[
+        "colorama>=0.4.0",
+        "pyyaml>=5.0",
+        "tzlocal>=2.1,<3.0",
+        "pytz"
+    ],
     extras_require={
         "docs": ["ghp-import", "pygreen"],
+        # Modern way to define test dependencies
+        "test": ["pytest", "cram", "mock"]
     },
     python_requires='>=3.6'
 )
