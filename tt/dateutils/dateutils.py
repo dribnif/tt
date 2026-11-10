@@ -76,7 +76,7 @@ def get_current_year_local_tz():
 
 def parse_time_h_m_to_iso(timestr):
     now = get_now()
-    
+
     try:
         settime = parse_time_multiformat(timestr)
         x = now.replace(hour=settime.hour, minute=settime.minute, second=0, microsecond=1)
@@ -85,8 +85,8 @@ def parse_time_h_m_to_iso(timestr):
             y = x.replace(day=currentday.day, month=currentday.month, year=currentday.year)
             return local_to_utc(y)
         return local_to_utc(x)
-    except Exception as e:
-        print(e)
+    except Exception:
+        pass
 
     raise TIError("Don't understand the time %r" % (timestr,))
 

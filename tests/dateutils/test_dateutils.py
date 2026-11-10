@@ -1,3 +1,5 @@
+import io
+from contextlib import redirect_stdout
 from unittest import TestCase
 from tt.dateutils.dateutils import *
 from tt.exceptz.exceptz import TIError
@@ -99,6 +101,12 @@ class TestDateutils(TestCase):
         parsed_time=parse_time_h_m_to_iso("0115")
         self.date_time_assertion_helper(parsed_time, 2018, 6, 20, 23, 15, 0, 1)
         
+    def test_parse_time_h_m_to_iso_garbage_stays_quiet_on_stdout(self):
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            self.assertRaises(TIError, parse_time_h_m_to_iso, "garbage")
+        self.assertEqual("", buf.getvalue())
+
     def date_time_assertion_helper(self, parsed_time, year, month, day, hour, minute, second, microsecond):
         self.assertEqual(year,parsed_time.year)
         self.assertEqual(month,parsed_time.month)
